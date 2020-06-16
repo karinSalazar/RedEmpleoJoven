@@ -8,8 +8,13 @@ class Video(models.Model):
     name= models.CharField(max_length=500)
     videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
 
-    def str(self):
-        return self.name + ": " + str(self.videofile)
+    class Meta:
+    	verbose_name = 'Video'
+    	verbose_name_plural = 'Videos'
+
+    def __str__(self):
+    	return str(self.name) + ": " + str(self.videofile)
+
 
 
 class Colaborador(models.Model):
@@ -27,11 +32,17 @@ class Colaborador(models.Model):
 	def __str__(self):
 		return str(self.nombreColaborador)
 
+
+
+
 class Proyecto(models.Model):
 	order = models.IntegerField(blank=True, null=True)
 	nombreProyecto = models.CharField(max_length=40,null=True)
 	descripcion = models.CharField(max_length=300,null=True)
-	imagen = models.ImageField(upload_to ='proyecto/', null = True)
+	imagen = models.ImageField(upload_to ='proyecto/')
+	video = models.FileField(upload_to='videos/', null=True, verbose_name="")
+	proyecto_del_año =models.BooleanField(default=True,verbose_name='proyecto_del_año')
+
 	
 	class Meta:
 		verbose_name = 'Proyecto'
@@ -43,13 +54,15 @@ class Proyecto(models.Model):
 
 
 
+
 class Noticia(models.Model):
+	order = models.IntegerField(blank=True, null=True)
 	fecha = models.DateField(blank=True, null=True)
+	usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 	link = models.URLField(max_length=500)
 	titulo = models.CharField(max_length=100,blank=True, null=True)
 	descripcion = models.CharField(max_length=300,blank=True, null=True)
 	imagen = models.ImageField(upload_to = 'noticia/', default = 'pic_folder/None/partner-3.png')
-	order = models.IntegerField(blank=True, null=True)
 	body = models.TextField(blank=True, null=True)
 		
 	class Meta:
@@ -59,6 +72,8 @@ class Noticia(models.Model):
 
 	def __str__(self):
 		return str(self.order) + " " + str(self.titulo)+ " " + str(self.descripcion) 
+
+
 
 
 class Recurso(models.Model):
