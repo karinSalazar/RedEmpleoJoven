@@ -1,0 +1,105 @@
+{% extends 'aplicacion/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Recursos</h2>
+          		<div class="col-lg-3">
+	               	<div class="input-group">
+		                <form action="" class="form-inline">
+		                  <input type="text" class="form-control form-check mb-2" placeholder="Buscar">
+		  					<div class="input-group-append">
+		    						<button class="btn btn-success" type="button" id="button-addon2" class="col-auto my-1"><i class="icofont-search"></i></button>
+		  					</div>
+		                </form>
+	              	</div>
+              	</div> 
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    
+
+        
+
+    <div id="page-content">
+		
+	<div class="box-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1" >
+						<!-----------------Content-------------------->
+
+					<article>
+						{% for r in res %} 
+						<div class="col-md-4 text-center animate-box"> 
+							<div class="classWithM"> 
+							<div class="entry-header"> 
+								<div class ="luatitle">
+									<h6 class="entry-title recursos">{{r.proyecto.nombreProyecto}}</h6>
+								
+									<h4 class="entry-title text-uppercase text-center">{{r.nombreRecurso}}</h4>
+								</div>
+									<div class="post-thumbnail-wrap">
+										<div class="portfolio-box zoom-effect">
+											<div class="luacard" >
+											<img src="../../static/img/{{r.imagen}}" class= "lua" alt="#"> 
+											</div>
+										</div>
+									</div>
+							
+									<div class="entry-content resumen" > 
+									<a target ="_blank" class ="btn btn-skin recdescargas text-center" href= "../../static/img/{{r.archivo}}">
+										<p class="recp get-started-btn scrollto" > Download</p></a>
+							              
+									</div>
+							</div>
+							</div>
+						</div>
+						{% endfor %}	
+					</article>
+
+					<table> 
+						<thead> 
+							<tr> 
+								<th> 
+									
+									{% if page_obj.has_previous %} 
+									<a class="btn btn-skin" role="button" href="?page={{ page_obj.previous_page_number }}"> "Back" </a> 
+									{% endif %}
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									{% if page_obj.has_next %} 
+									<a class="btn btn-skin" role="button" href="?page={{ page_obj.next_page_number }}"> "Next" </a> 
+									{% endif %} 
+									
+								</th> 
+							</tr> 
+						</thead> 
+					</table>	 
+				</div> 
+			</div> 
+		</div> 
+	</div>
+</div>
+
+	<script>
+		function Barrita() {
+			$('#rec').addClass('active');
+        }
+		window.onload = Barrita
+    </script>
+
+{% endblock content %}
+
+
+
+
+

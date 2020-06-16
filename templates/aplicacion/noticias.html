@@ -1,0 +1,107 @@
+{% extends 'aplicacion/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Noticias</h2>
+          <ol>
+            <li>Las Últimas Novedades....</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    
+
+        
+
+        <div class="portfolio-description">
+        	<div id="page-content">
+				<div class="box-content">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-10 col-md-offset-2">
+					        	<article>
+
+														{% for press in prensa %}
+														<div class="wrap-post"><!--Start Box-->
+															<div class="entry-header">
+																
+																	<h2 class="text-uppercase font-weight-bold text-center"><a>{{press.titulo}}</a></h2>
+																	
+																		<span class="entry-meta">
+																			<ul class="list-inline link">
+																				<li><a href="#">{{press.fecha}}</a></li>
+																			</ul>
+																		</span>
+															</div>
+															<div class="post-thumbnail-wrap">
+																<div class="portfolio-box zoom-effect">
+																	<img src="../../static/img/{{press.imagen}}" class="img-responsive" alt="#">
+																 
+																</div>
+															</div>
+															<div class="entry-content">
+																<p> {{press.descripcion}} </p> 
+																<a class="get-started-btn scrollto recp"  href="{{press.link}}" target="_blank">Read More</a>
+															</div>
+														</div>
+														{% endfor %}
+														<br/>
+
+								</article>
+													
+												
+
+								<table>
+									<thead>
+										<tr>
+											<th>
+														{% if page_obj.has_next %}
+																<a class="btn btn-skin" role="button" href="?page={{ page_obj.next_page_number }}"> "Next" </a>
+														{% endif %}
+														{% if page_obj.has_previous %}
+																<a class="btn btn-skin" role="button" href="?page={{ page_obj.previous_page_number }}"> "Back" </a>
+														{% endif %}
+											</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+        </div>
+
+
+  </main><!-- End #main -->
+  <script>
+		function Barrita() {
+			$('#not').addClass('active');
+        }
+		window.onload = Barrita
+    </script>
+
+					<!-----------------Content-------------------->
+						
+					
+
+{% endblock content %}	
+
+ 
+
+
+
+
